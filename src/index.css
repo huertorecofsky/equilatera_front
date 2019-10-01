@@ -1,0 +1,109 @@
+html, body {
+	margin: 0;
+	height: 100%;
+}
+#logo{
+margin-top: 64px;
+max-width: 200px;
+margin-left: 73px;
+}
+
+h1{
+font-family: 'Raleway', sans-serif;
+font-size:20px;
+font-weight: 500;
+max-width:258px;
+height: 135px;
+text-align: center;
+margin-right: 50px;
+margin-left: 50px;
+margin-top: 68,27px;
+}
+
+h2{
+font-family: 'Releway', sans-serif;
+font-size: 20px;
+font-weight: 500;
+max-width:262px;
+height: 49.5px;
+text-align: left;
+margin-right: 50px;
+margin-left: 50px;
+padding-top: 144.27px;
+color: #FFFFFF;
+
+}
+
+#cuestionario {
+		background: #5D008E;
+		height: 100%;
+}
+#btnSi{
+	width: 123px;
+	height: 30.046px;
+  	font-family: 'Releway', sans-serif;
+  	font-size: 16px;
+  	font-weight: bold;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #ffffff;
+  	margin-left: 50px;
+  	margin-top:72px;
+  	border-radius: 4px;
+  	background-color:#A0A0A0;
+  	display: inline-block;
+}
+#btnNo{
+	width: 123px;
+	height: 30.046px;
+  	font-family: 'Releway', sans-serif;
+  	font-size: 16px;
+  	font-weight: bold;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #ffffff;
+  	margin-top:72px;
+  	border-radius: 4px;
+  	background-color:#A0A0A0;
+  	display: inline-block;
+}
+
+textarea {
+	margin-left: 50px;
+	width: 250px;
+	height: 100px;
+}
+
+#comenzar{
+	width: 250px;
+	height: 42px;
+  	font-family: 'Raleway', sans-serif;
+  	font-size: 16px;
+  	font-weight: bold;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #ffffff;
+  	margin-left: 50px;
+  	margin-top:72px;
+  	border-radius: 4px;
+  	background-color:#84BD4B;
+}
+
+#cuestionario {
+	display: none;
+}
+
+#siguiente {
+	width: 250px;
+	height: 42px;
+  	font-family: 'Releway', sans-serif;
+  	font-size: 16px;
+  	font-weight: bold;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #ffffff;
+  	margin-left: 50px;
+  	margin-top:72px;
+  	border-radius: 4px;
+  	background-color:#84BD4B;
+}
