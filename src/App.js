@@ -1,13 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import ToDoForm from './components/ToDoForm';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div>
-      <ToDoForm
-      pregunta = "¿Cree que su empresa es igualitaria?"/>
-
+      <Dashboard/>      
     </div>
   );
 }
