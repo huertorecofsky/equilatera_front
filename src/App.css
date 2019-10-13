@@ -8,6 +8,10 @@ button {
   cursor: pointer;
 }
 
+#root {
+  height: 100vh;
+}
+
 .container{
   flex-grow: 1;
   display: flex;
@@ -91,6 +95,7 @@ button {
   color: #FFFFFF;
   background: #8E47BA;
   border-radius: 13px;
+  text-decoration: none;
 }
 
 .tablero {
@@ -109,9 +114,14 @@ button {
 
 .companias {
   display: flex;
+  flex-direction: column;
 }
 
 .contenedor-lista {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 750px;
   height: 50px;
   background: #E4E2E6;
@@ -121,13 +131,26 @@ button {
   border-radius: 7px;
   padding-left: 20px;
   padding-right: 20px;
-  float: left;
+  margin-bottom: 30px;
+}
+
+.compania-nombre {
+  font-family: Raleway;
+  font-weight: bold;
+  font-size: 24px;
+  color: #636161;
+  padding-left: 20px;
+}
+
+.compania-acciones {
+  display: flex;
+  flex-direction: row;
 }
 
 .btn-abrir {
+  margin-left: 10px;
   width: 100px;
   height: 30px;
-  float: right;
   font-size: 15px;
   text-align: center;
   background: #84BD4B;
@@ -135,9 +158,7 @@ button {
   font-weight: 600;
   line-height: 29px;
   color: #FFFFFF;
-  align-items: center;
-  position: relative;
-  top: -32px; left: 10px;
+  text-decoration: none;
 }
 
 h2 {
@@ -147,20 +168,23 @@ h2 {
 }
 
 .agregar-companias {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 	width: 750px;
 	display: flex;
-  align-items: center;
-  padding-top: 300px;
 }
 
 .nombre-compania {
-	width: 650px;
-	height: 30px;
+  flex-grow: 1;
+	height: 40px;
+  border: none;
+  padding-left: 10px;
 }
 
 .btn-agregar-compania {
 	width: 150px;
-  height: 35px;
+  height: 40px;
   font-size: 15px;
   text-align: center;
   background: #8E47BA;
@@ -168,8 +192,8 @@ h2 {
   font-weight: 600;
   line-height: 29px;
   color: #FFFFFF;
-	padding-top: 3px;
 	margin-left: 20px;
+  border: none;
 }
 
 
@@ -206,9 +230,14 @@ p {
   font-size: 15px;
 }
 
-h3 {
-  font-size: 15px;
+.titulo-pregunta {
   margin: 0px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+  line-height: 22px;
 }
 
 .seccion-dos-form {
@@ -307,15 +336,6 @@ border-radius: 25px;
 
 .btnPrimary-verde:disabled {
   cursor: not-allowed;
-}
-
-h3 {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
-  font-style: normal;
-  text-align: center;
-  line-height: 22px;
 }
 
 /* Dropdown Button */
@@ -429,4 +449,8 @@ h3 {
   border-radius: 5px;
   width: 500px;
   height: 200px;
+}
+
+.gracias {
+  justify-content: flex-start;
 }

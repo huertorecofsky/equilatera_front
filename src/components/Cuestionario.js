@@ -15,10 +15,13 @@ class Cuestionario extends React.Component {
     this.irAtras = this.irAtras.bind(this);
     this.irSiguiente = this.irSiguiente.bind(this);
     this.responder = this.responder.bind(this);
+    this.enviarRespuestas = this.enviarRespuestas.bind(this);
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/encuesta/api/preguntas/')
+    const { match: { params }} = this.props;
+
+    fetch(`http://localhost:8000/encuesta/api/preguntas/?tipo_Usuario=${params.tipo}`)
       .then((respuesta) => respuesta.json())
       .then((preguntas) => this.setState({ preguntas }));
   }
@@ -42,6 +45,11 @@ class Cuestionario extends React.Component {
     ];
 
     this.setState({ respuestas: nuevasRespuestas });
+  }
+
+  enviarRespuestas() {
+    const { history, match: { params } } = this.props;
+    history.push(`/${params.tipo}/${params.uuid}/completado`);
   }
 
   renderTipoPregunta() {
@@ -87,7 +95,7 @@ class Cuestionario extends React.Component {
     return preguntas.length > 0 ? (
       <div className="container-formulario-violeta">
         <div className="seccion-uno-pregunta">
-          <h3>
+          <h3 className="titulo-pregunta">
             {pregunta.descripcion}
           </h3>
         </div>
@@ -109,7 +117,16 @@ class Cuestionario extends React.Component {
             >
               Siguiente
             </button>
-          ) : null}
+          ) : (
+            <button
+              name="Enviar"
+              className="btnPrimary-verde"
+              onClick={this.enviarRespuestas}
+              disabled={respuestaActual == null}
+            >
+              Enviar
+            </button>
+            )}
         </div>
       </div>
     ) : null

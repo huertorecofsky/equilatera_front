@@ -5,15 +5,15 @@ class PreguntaCerrada extends React.Component {
     const { respuesta, onRespuesta } = this.props;
 
     return (
-      <div class="Si-No">
+      <div className="Si-No">
         <button
-          class={`btn-si ${respuesta === 'Si' ? 'btn-activo' : ''}`}
+          className={`btn-si ${respuesta === 'Si' ? 'btn-activo' : ''}`}
           onClick={() => onRespuesta('Si')}
         >
           Si
         </button>
         <button
-          class={`btn-no ${respuesta === 'No' ? 'btn-activo' : ''}`}
+          className={`btn-no ${respuesta === 'No' ? 'btn-activo' : ''}`}
           onClick={() => onRespuesta('No')}
         >
           No

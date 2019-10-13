@@ -1,44 +1,84 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Linea({ nombre, link }) {
+function Linea({ nombre, uuid }) {
   return (
-    <div>
-      {nombre}
-      <a href = {link}>Abrir</a>
+    <div className="contenedor-lista">
+      <div className="compania-nombre">{nombre}</div>
+      <div className="compania-acciones">
+        <Link
+          className="btn-abrir"
+          to={`/empleado/${uuid}/comenzar`}
+        >
+          Empleade
+        </Link>
+        <Link
+          className="btn-abrir"
+          to={`/rrhh/${uuid}/comenzar`}
+        >
+          RRHH
+        </Link>
+      </div>
     </div>
   )
 }
+
+const ORGANIZACIONES_URL = 'http://localhost:8000/encuesta/api/organizaciones/';
+
 function Dashboard() {
   const [nombre, setNombre] = React.useState("")
   const [comps, setComps] = React.useState([])
   React.useEffect(() => {
-    const promesa = fetch("https://equilatera-ong.free.beeceptor.com/organizaciones")
+    const promesa = fetch(ORGANIZACIONES_URL)
     const respuesta = promesa.then((respuesta) => respuesta.json())
     respuesta.then((compañias) => setComps(compañias))
-
   }, [])
 
-  return (
-    <div>
-      {comps.map((compañia) => (
-        <Linea nombre={compañia.nombre} link={compañia.link}
-        />
-      ))}
-      <form onSubmit={(event) => {
-        const compañia = {
-          nombre: nombre, link : "http://google.com" 
-        }
-        setComps([...comps, compañia])
-        event.preventDefault()
-        setNombre("")
-      }}>
-        <input value={nombre}
-          onChange={(event) => setNombre(event.target.value)}
+  const crearCompania = async (event) => {
+    event.preventDefault();
 
+    const respuesta = await fetch(ORGANIZACIONES_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ nombre }),
+    });
+    const compania = await respuesta.json();
+
+    setComps([...comps, compania]);
+    setNombre("");
+  }
+
+  return (
+    <div className="tablero">
+      <div>
+        <img src="https://i.ibb.co/9GYQ2Fw/Logo-equilatera.jpg"
+          className="logo-dashboard"
+          alt="Logo-equilatera"
+          border="0"
         />
-        <button type="submit">
+      </div>
+      <div className="companias">
+        {comps.map((comp) => (
+          <Linea nombre={comp.nombre} uuid={comp.uuid}
+          />
+        ))}
+      </div>
+
+      <form
+        onSubmit={crearCompania}
+        className="agregar-companias"
+      >
+        <input
+          className="input nombre-compania"
+          type="text"
+          value={nombre}
+          onChange={(event) => setNombre(event.target.value)}
+        />
+        <button type="submit" name="Agregar" className="btn-agregar-compania">
           Agregar
-      </button>
+        </button>
       </form>
     </div>
   );
