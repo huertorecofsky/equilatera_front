@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import Cuestionario from './components/Cuestionario'
+import Dashboard from './components/Dashboard';
 
-
-
-
-const App = () => (
- <Cuestionario/>
-)
+function App() {
+  return (
+    <div>
+      <Dashboard/>
+      <Cuestionario />     
+    </div>
+  );
+}
 
 export default App;
