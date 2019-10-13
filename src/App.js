@@ -1,12 +1,12 @@
 import React from 'react';
 import Cuestionario from './components/Cuestionario'
 import Dashboard from './components/Dashboard';
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <Dashboard/>
-      <Cuestionario />     
+    <div className="container">
+      <Cuestionario />
     </div>
   );
 }

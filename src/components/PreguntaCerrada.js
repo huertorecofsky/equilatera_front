@@ -1,23 +1,25 @@
 import React from 'react';
 
 class PreguntaCerrada extends React.Component {
-    constructor(props) {
-      super(props);
-    this.opcionElegida = this.opcionElegida.bind(this)
-  }
-  opcionElegida(event) {
-   
-    console.log(this)
-  }
-render() {
+  render() {
+    const { respuesta, onRespuesta } = this.props;
+
     return (
- <div>
-     <p>Conoces los valores de la cultura organizacional?</p>
-     <input onChange={this.opcionElegida}/>
-     <input type="radio"/> Sí
-     <input type="radio"/> No
- </div>
- )
-}
+      <div class="Si-No">
+        <button
+          class={`btn-si ${respuesta === 'Si' ? 'btn-activo' : ''}`}
+          onClick={() => onRespuesta('Si')}
+        >
+          Si
+        </button>
+        <button
+          class={`btn-no ${respuesta === 'No' ? 'btn-activo' : ''}`}
+          onClick={() => onRespuesta('No')}
+        >
+          No
+        </button>
+      </div>
+    )
+  }
 }
 export default PreguntaCerrada

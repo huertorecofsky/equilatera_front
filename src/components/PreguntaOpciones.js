@@ -1,28 +1,34 @@
 import React from 'react';
 class PreguntaOpciones extends React.Component {
-    constructor(props) {
-      super(props);
-      this.opcionSeleccionada = this.opcionSeleccionada.bind(this)
+  renderOpciones(opciones) {
+    const opcionesJSX = [];
+
+    for (let i = 0; i < opciones.length; i++) {
+      opcionesJSX.push(
+        <button className="btn">{opciones[i]}</button>
+      );
     }
-    opcionSeleccionada(event) {
-     
-      console.log(this)
-    }
-    
-    render() {
-      return (
-       <div>
-           <p>Me siento identificado con el género</p>
-          <select onChange={this.opcionSeleccionada}>
-            <option value="" >seleccionar</option>
-            <option value="f" >femenino</option>
-            <option value="m" >masculino</option>
-            <option value="nb" >no binario</option>
-            <option value="nd" >prefiero no decirlo</option>
-           </select>
-       </div>
-     ) 
-   }
+
+    return opcionesJSX;
   }
 
-  export default PreguntaOpciones
+  render() {
+    const { opciones, respuesta, onRespuesta } = this.props;
+
+    return (
+      <div className="btn-group-verticales">
+        {opciones.map((opcion) => (
+          <button
+            key={opcion}
+            className={`btn-opcion ${respuesta === opcion ? 'btn-activo' : ''}`}
+            onClick={() => onRespuesta(opcion)}
+          >
+            {opcion}
+          </button>
+        ))}
+      </div>
+    )
+  }
+}
+
+export default PreguntaOpciones
