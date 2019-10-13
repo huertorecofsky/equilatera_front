@@ -1,15 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import ToDoForm from './components/ToDoForm';
+import Cuestionario from './components/Cuestionario'
 
-function App() {
-  return (
-    <div>
-      <ToDoForm
-      pregunta = "¿Cree que su empresa es igualitaria?"/>
 
-    </div>
-  );
-}
+
+
+const App = () => (
+ <Cuestionario/>
+)
 
 export default App;
