@@ -305,6 +305,10 @@ border-radius: 25px;
   border-radius: 13px;
 }
 
+.btnPrimary-verde:disabled {
+  cursor: not-allowed;
+}
+
 h3 {
   color: #FFFFFF;
   font-size: 16px;
@@ -419,4 +423,10 @@ h3 {
 .btn-activo {
   color: #FFFFFF;
   background: #65BA47;
+}
+
+.respuesta-texto {
+  border-radius: 5px;
+  width: 500px;
+  height: 200px;
 }

@@ -1,25 +1,17 @@
 import React from 'react';
 
 class PreguntaTexto extends React.Component {
-    constructor(props) {
-        super(props);
-        this.respuesta = this.respuesta.bind(this)
-    }
-    respuesta(event) {
-        console.log(this)
-    }
+  render() {
+    const { respuesta, onRespuesta } = this.props;
 
-    render() {
-        return (
-            <div>
-                <p>¿Cuáles?</p>
-                <textarea onChange={this.respuesta} />
-                &nbsp;
-                <br />
-                <button>siguiente</button>
-            </div>
-        )
-    }
+    return (
+      <textarea
+        className="respuesta-texto"
+        value={respuesta}
+        onChange={(event) => onRespuesta(event.target.value)}
+      />
+    )
+  }
 }
 
 export default PreguntaTexto

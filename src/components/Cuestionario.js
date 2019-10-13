@@ -2,27 +2,12 @@ import React from 'react';
 import PreguntaTexto from './PreguntaTexto'
 import PreguntaOpciones from './PreguntaOpciones'
 import PreguntaCerrada from './PreguntaCerrada'
-const mock = [
-  {
-    descripcion: 'Me siento identificado con el género',
-    tipo: 'opciones',
-    opciones: [
-      'Femenino',
-      'Masculino',
-      'No Binario',
-      'Prefiero no Decirlo',
-    ]
-  },
-  {
-    descripcion: 'Pregunta 2',
-    tipo: 'sino'
-  }
-]
+
 class Cuestionario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      preguntas: mock,
+      preguntas: [],
       preguntaActual: 0,
       respuestas: [],
     }
@@ -30,6 +15,12 @@ class Cuestionario extends React.Component {
     this.irAtras = this.irAtras.bind(this);
     this.irSiguiente = this.irSiguiente.bind(this);
     this.responder = this.responder.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:8000/encuesta/api/preguntas/')
+      .then((respuesta) => respuesta.json())
+      .then((preguntas) => this.setState({ preguntas }));
   }
 
   irAtras() {
@@ -67,16 +58,16 @@ class Cuestionario extends React.Component {
             onRespuesta={(respuesta) => this.responder(preguntaActual, respuesta)}
           />
         );
-      case "opciones":
+      case "multiple":
         return (
           <PreguntaOpciones
             select="seleccionar"
-            opciones={pregunta.opciones}
+            opciones={pregunta.opciones.split(',')}
             respuesta={respuestaActual}
             onRespuesta={(respuesta) => this.responder(preguntaActual, respuesta)}
           />
         )
-      case "sino":
+      case "si_no":
         return (
           <PreguntaCerrada
             respuesta={respuestaActual}
@@ -89,10 +80,11 @@ class Cuestionario extends React.Component {
   }
 
   render() {
-    const { preguntas, preguntaActual } = this.state;
+    const { preguntas, respuestas, preguntaActual } = this.state;
     const pregunta = preguntas[preguntaActual];
+    const respuestaActual = respuestas[preguntaActual];
 
-    return (
+    return preguntas.length > 0 ? (
       <div className="container-formulario-violeta">
         <div className="seccion-uno-pregunta">
           <h3>
@@ -104,18 +96,23 @@ class Cuestionario extends React.Component {
         </div>
         <div className="seccion-tres-btn-siguiente">
           {preguntaActual > 0 ? (
-            <button name="Atrás" class="btnAtras" onClick={this.irAtras}>
+            <button name="Atrás" className="btnAtras" onClick={this.irAtras}>
               Atrás
             </button>
           ) : null}
           {preguntaActual < preguntas.length - 1 ? (
-            <button name="Siguiente" class="btnPrimary-verde" onClick={this.irSiguiente}>
+            <button
+              name="Siguiente"
+              className="btnPrimary-verde"
+              onClick={this.irSiguiente}
+              disabled={respuestaActual == null}
+            >
               Siguiente
             </button>
           ) : null}
         </div>
       </div>
-    )
+    ) : null
   }
 }
 export default Cuestionario
