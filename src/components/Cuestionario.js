@@ -49,7 +49,26 @@ class Cuestionario extends React.Component {
 
   enviarRespuestas() {
     const { history, match: { params } } = this.props;
-    history.push(`/${params.tipo}/${params.uuid}/completado`);
+    const { preguntas, respuestas } = this.state;
+
+    const promesas = preguntas.map((pregunta, indice) => {
+      const respuesta = respuestas[indice];
+
+      return fetch('http://localhost:8000/encuesta/api/respuestas/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          pregunta: pregunta.id,
+          organizacion_uuid: params.uuid,
+          descripcion: respuesta,
+        }),
+      });
+    });
+
+    Promise.all(promesas)
+      .then(() => history.push(`/${params.tipo}/${params.uuid}/completado`));
   }
 
   renderTipoPregunta() {

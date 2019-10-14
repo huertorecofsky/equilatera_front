@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CuestionarioComenzar = ({ match: { params }}) => (
   <div className="container-formulario">
     <div className="seccion-uno">
-      <img src="https://i.ibb.co/9GYQ2Fw/Logo-equilatera.jpg" class="logo-formulario" alt="Logo-equilatera" border="0"/>
+      <img src="https://i.ibb.co/9GYQ2Fw/Logo-equilatera.jpg" className="logo-formulario" alt="Logo-equilatera" border="0"/>
     </div>
     <div className="seccion-dos-form">
       <div className="caja-texto">
