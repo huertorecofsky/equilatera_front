@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import Cuestionario from './components/Cuestionario'
 import CuestionarioComenzar from './components/CuestionarioComenzar';
@@ -19,6 +20,9 @@ function App() {
           <Route path="/:tipo/:uuid/comenzar" component={CuestionarioComenzar} />
           <Route path="/:tipo/:uuid/completado" component={CuestionarioCompletado} />
           <Route path="/:tipo/:uuid" component={Cuestionario} />
+          <Route>
+            <Redirect to="/dashboard" />
+          </Route>
         </Switch>
       </Router>
     </div>
